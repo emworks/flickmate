@@ -7,6 +7,7 @@
 git checkout feature/abc
 npm run build
 git checkout demo
+mkdir -p ./feature/abc
 cp -r ./dist/* ./feature/abc
 git add .
 git commit -m "deploy feature/abc"

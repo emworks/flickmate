@@ -5,13 +5,13 @@
 2. Build in the feature branch and update the `demo` branch
 ```
 git checkout feature/abc
-npm run build
+npm run build -- --public-url ./
 git checkout demo
 mkdir -p ./feature/abc
 cp -r ./dist/* ./feature/abc
 git add .
 git commit -m "deploy feature/abc"
-git push origin demo --force
+git push
 ```
 
 3. Go to https://emworks.github.io/flickmate/feature/abc

@@ -1,20 +1,38 @@
 import BaseView from "./base-view";
 
+/**
+ * Класс модального окна фильма.
+ * Отвечает за отображение деталей фильма и работу с кнопками внутри модалки.
+ * Наследуется от BaseView.
+ */
 export default class MovieModalView extends BaseView {
+    /**
+     * @param {string} selector - CSS-селектор контейнера модалки
+     * @param {Object} initialData - Начальные данные для модалки
+     */
     constructor(selector, initialData = {}) {
         super(selector, initialData);
     }
 
+    /**
+     * Открывает модалку с переданными данными фильма
+     * @param {Object} movie - Объект фильма
+     */
     open(movie) {
         this._data = movie;
         this.render();
-        this._$el.showModal();
+        this._$el.showModal(); // встроенный метод HTML-элемента <dialog>
     }
 
+    /** Закрывает модалку */
     close() {
         this._$el.close();
     }
 
+    /** 
+     * Генерирует HTML для списка метаданных фильма
+     * @returns {string} HTML-строка с метаданными
+     */
     #createMetadataList() {
         if (!this._data.metadata || !this._data.metadata.length) {
             return "Нет информации";
@@ -31,6 +49,7 @@ export default class MovieModalView extends BaseView {
         `;
     }
 
+    /** Генерирует полный HTML модалки */
     #createModal() {
         return `
             <div class="movie-modal-wrapper">
@@ -57,18 +76,25 @@ export default class MovieModalView extends BaseView {
         `;
     }
 
+    /** Метод для рендера HTML (обязательный для BaseView) */
     _createInnerHTML() {
         return this.#createModal();
     }
 
+    /** TODO: Показ уведомления о настройках (заглушка) */
     #showSettings() {
         alert("Settings are not implemented");
     }
 
+    /** TODO: Переход на страницу просмотра фильма (заглушка) */
     #navigateToWatchPage(movieId) {
         alert("Watch page is not implemented");
     }
 
+    /**
+     * Обработчик кликов по кнопкам модалки
+     * @param {MouseEvent} event
+     */
     #handleButtons = (event) => {
         const closeBtn = event.target.closest("[data-modal-close]");
         if (closeBtn) return this.close();
@@ -86,13 +112,18 @@ export default class MovieModalView extends BaseView {
         }
     }
 
+    /** Убирает события перед перерендером (BaseView) */
     _detachEvents() {
         this._$el.removeEventListener("click", this.#handleButtons);
     }
 
-    _attachEvents() {    
+    /** Добавляет события после рендера (BaseView) */
+    _attachEvents() {
+        // Делегирование событий кликов на контейнер модалки
+        // Позволяет обрабатывать все кнопки внутри одной функции
         this._$el.addEventListener("click", this.#handleButtons);
     }
 }
 
+/** Фабрика для создания модалки */
 export const createMovieModal = () => new MovieModalView("#movie-modal");

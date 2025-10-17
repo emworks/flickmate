@@ -1,22 +1,16 @@
-import MovieList from "./movie-list";
-import MovieModal from "./movie-modal";
-import movies from "../data/movies";
+import MovieListView from "./views/movie-list-view";
+import MovieModel from "./models/movie-model";
 
 class IndexPage {
-    movieList
-    movieModal
+    movieListView
 
     constructor() {
-        this.#init();
-    }
-
-    #init() {
-        this.movieList = new MovieList("#movie-list-container", movies);
-        this.movieModal = new MovieModal("#movie-modal");
+        const movies = MovieModel.getAll();
+        this.movieListView = new MovieListView("#movie-list-container", movies);
     }
 
     render() {
-        this.movieList.render();
+        this.movieListView.render();
     }
 }
 

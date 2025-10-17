@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,32 +9,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="styles/utils.css">
+    <link rel="stylesheet" href="styles/form.css">
     <link rel="stylesheet" href="styles/movie-list.css">
+    <link rel="stylesheet" href="styles/movie-modal.css">
 </head>
+
 <body>
     <div class="page-wrapper">
         <header class="main-header">
             <h1>Каталог фильмов</h1>
         </header>
-        <main class="content-wrapper">
-            <section class="movie-list">
-                <!-- template using posthtml-expressions -->
-                <each loop="movie in movies">
-                    <article class="movie-item" >
-                        <a href="{{ movie.link }}">
-                            <div class="movie-item-poster">
-                                <img alt="{{ movie.title }}" loading="lazy" src="{{ movie.img }}" />
-                            </div>
-                            <div class="movie-item-desc">
-                                <div class="movie-item-title truncate">{{ movie.title }}</div>
-                                <div class="movie-item-subtitle truncate">{{ movie.subtitle }}</div>
-                                <div class="movie-item-details truncate">{{ movie.details }}</div>
-                            </div>
-                        </a>
-                    </article>
-                </each>
-            </section>
-        </main>
+        <main id="movie-list-container" class="content-wrapper"></main>
     </div>
+    <dialog id="movie-modal" aria-labelledby="movie-modal-title" aria-modal="true"></dialog>
+    <script src="./scripts/index.js" type="module"></script>
 </body>
+
 </html>

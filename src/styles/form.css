@@ -1,0 +1,31 @@
+.primary-btn,
+.secondary-btn {
+    height: 45px;
+    min-width: 185px;
+    font-size: var(--text-button);
+    font-weight: var(--font-weight-bold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.primary-btn {
+    background-color: var(--color-primary);
+    color: var(--color-h1);
+}
+
+.primary-btn:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.secondary-btn {
+    background-color: var(--color-secondary);
+    color: var(--color-bg);
+}
+
+.secondary-btn:hover {
+    background-color: var(--color-secondary-hover);
+}

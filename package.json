@@ -10,7 +10,6 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel": "^2.16.0",
-    "posthtml-expressions": "^1.11.4"
+    "parcel": "^2.16.0"
   }
 }

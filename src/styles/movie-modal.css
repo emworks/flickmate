@@ -120,7 +120,7 @@ dialog::backdrop {
     .movie-modal-body {
         flex-direction: column;
         overflow-y: auto;
-        height: calc(100vh - 45px - var(--spacing) * 3);
+        height: calc(100vh - 120px);
     }
 
     .movie-modal-content>div {

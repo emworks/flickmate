@@ -8,7 +8,7 @@ export default class WatchHeaderView extends BaseView {
 
     /** Метод для рендера HTML (обязательный для BaseView) */
     _createInnerHTML() {
-        return `<h1>${this._data.title}</h1>`;
+        return `<h1><a href="index.html">←</a>&nbsp;${this._data.title}</h1>`;
     }
 
     /** Убирает события перед перерендером (BaseView) */

@@ -26,10 +26,10 @@ export default class MovieListView extends BaseView {
      * @param {Object} movie - Объект фильма
      * @returns {string} HTML-код карточки
      */
-    #createItem({ id, link, title, subtitle, img, details }) {
+    #createItem({ id, title, subtitle, img, details }) {
         return `
             <article class="movie-item">
-                <a href="${link}" data-modal-open data-id="${id}">
+                <a href="watch.html?movie_id=${id}" data-modal-open data-id="${id}">
                     <div class="movie-item-poster">
                         <img src="${img}" alt="${title}" loading="lazy" />
                     </div>

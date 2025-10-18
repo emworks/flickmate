@@ -68,7 +68,7 @@ export default class MovieModalView extends BaseView {
                         </div>
                         <menu>
                             <button class="movie-modal-settings-btn secondary-btn">Настройки сеанса</button>
-                            <a class="movie-modal-watch-btn primary-btn" href="${this._data.link}">Смотреть вместе →</a>
+                            <a class="primary-btn" href="watch.html?movie_id=${this._data.id}">Смотреть вместе →</a>
                         </menu>
                     </div>
                 </section>
@@ -86,11 +86,6 @@ export default class MovieModalView extends BaseView {
         alert("Settings are not implemented");
     }
 
-    /** TODO: Переход на страницу просмотра фильма (заглушка) */
-    #navigateToWatchPage(movieId) {
-        alert("Watch page is not implemented");
-    }
-
     /**
      * Обработчик кликов по кнопкам модалки
      * @param {MouseEvent} event
@@ -103,12 +98,6 @@ export default class MovieModalView extends BaseView {
         if (settingsBtn) {
             event.preventDefault();
             this.#showSettings();
-        }
-
-        const watchBtn = event.target.closest(".movie-modal-watch-btn");
-        if (watchBtn) {
-            event.preventDefault();
-            this.#navigateToWatchPage(this._data.id);
         }
     }
 

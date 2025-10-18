@@ -1,3 +1,4 @@
+import IndexHeaderView from "./views/index-header-view";
 import MovieListView from "./views/movie-list-view";
 import MovieModel from "./models/movie-model";
 
@@ -6,10 +7,14 @@ import MovieModel from "./models/movie-model";
  * Отвечает за инициализацию и рендер списка фильмов.
  */
 class IndexPage {
+    /** @type {IndexHeaderView} Хэдер */
+    indexHeaderView
     /** @type {MovieListView} Список фильмов */
     movieListView
 
     constructor() {
+        // Создаём View хэдера
+        this.indexHeaderView = new IndexHeaderView("#page-header");
         // Получаем все фильмы из модели
         const movies = MovieModel.getAll();
         // Создаём View для списка фильмов
@@ -18,6 +23,7 @@ class IndexPage {
 
     /** Рендерит главную страницу */
     render() {
+        this.indexHeaderView.render();
         this.movieListView.render();
     }
 }

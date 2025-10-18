@@ -87,10 +87,10 @@ export default class MovieModalView extends BaseView {
     }
 
     /**
-     * Обработчик кликов по кнопкам модалки
+     * Обработчик кликов
      * @param {MouseEvent} event
      */
-    #handleButtons = (event) => {
+    #handleClicks = (event) => {
         const closeBtn = event.target.closest("[data-modal-close]");
         if (closeBtn) return this.close();
 
@@ -103,14 +103,14 @@ export default class MovieModalView extends BaseView {
 
     /** Убирает события перед перерендером (BaseView) */
     _detachEvents() {
-        this._$el.removeEventListener("click", this.#handleButtons);
+        this._$el.removeEventListener("click", this.#handleClicks);
     }
 
     /** Добавляет события после рендера (BaseView) */
     _attachEvents() {
-        // Делегирование событий кликов на контейнер модалки
-        // Позволяет обрабатывать все кнопки внутри одной функции
-        this._$el.addEventListener("click", this.#handleButtons);
+        // Делегирование событий кликов на контейнер
+        // Позволяет обрабатывать все клики внутри одной функции
+        this._$el.addEventListener("click", this.#handleClicks);
     }
 }
 

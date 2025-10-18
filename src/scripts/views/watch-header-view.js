@@ -1,4 +1,3 @@
-// watch-view.js
 import BaseView from "./base-view.js";
 
 export default class WatchHeaderView extends BaseView {

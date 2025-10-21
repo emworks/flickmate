@@ -103,7 +103,8 @@ export default class ChatView extends BaseView {
     }
 
     #scrollToBottom() {
-        this._$el.scrollTop = this._$el.scrollHeight;
+        const messagesContainer = this._$el.querySelector("#chat-messages");
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
     #focusOnInput() {

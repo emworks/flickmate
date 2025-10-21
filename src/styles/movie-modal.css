@@ -7,7 +7,7 @@ dialog {
     width: 90%;
     background-color: var(--color-bg);
     color: var(--color-base);
-    box-shadow: 6px 10px 10px 0 color-mix(in srgb, var(--color-bg) 50%, transparent);
+    box-shadow: var(--box-shadow);
 }
 
 dialog::backdrop {
@@ -114,7 +114,7 @@ dialog::backdrop {
         position: relative;
         width: 100vw;
         background-color: var(--color-bg);
-        box-shadow: 6px 10px 10px 0 color-mix(in srgb, var(--color-bg) 50%, transparent);
+        box-shadow: var(--box-shadow);
     }
 
     .movie-modal-body {

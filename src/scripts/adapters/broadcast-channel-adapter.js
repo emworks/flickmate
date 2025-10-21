@@ -2,7 +2,12 @@ export default class BroadcastChannelAdapter {
     #channel
 
     constructor(channelName) {
-        this.#channel = new BroadcastChannel(channelName);
+        try {
+            this.#channel = new BroadcastChannel(channelName);
+        } catch (err) {
+            console.error("Ошибка создания Broadcast Channel:", err);
+        }
+        
     }
 
     /**
@@ -10,7 +15,11 @@ export default class BroadcastChannelAdapter {
      * @param {any} message
      */
     send(message) {
-        this.#channel.postMessage(message);
+        try {
+            this.#channel.postMessage(message);
+        } catch (err) {
+            console.error("Ошибка отправки сообщения:", err);
+        }
     }
 
     /**
@@ -18,7 +27,11 @@ export default class BroadcastChannelAdapter {
      * @param {function(any):void} callback
      */
     onMessage(callback) {
-        this.#channel.onmessage = (event) => callback(event.data);
+        try {
+            this.#channel.onmessage = (event) => callback(event.data);
+        } catch (err) {
+            console.error("Ошибка подписки на новые сообщения:", err);
+        }
     }
 }
 

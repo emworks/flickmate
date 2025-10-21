@@ -26,6 +26,7 @@ class WatchPage extends BaseView {
         this.#movie = MovieModel.getById(movieId);
     }
 
+    /** Метод для рендера HTML (обязательный для BaseView) */
     _createInnerHTML() {
         return `
             <div class="page-wrapper">

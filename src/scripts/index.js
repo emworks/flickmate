@@ -22,6 +22,7 @@ class IndexPage extends BaseView {
         this.#movies = MovieModel.getAll();
     }
 
+    /** Метод для рендера HTML (обязательный для BaseView) */
     _createInnerHTML() {
         return `
             <div class="page-wrapper">

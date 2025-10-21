@@ -1,16 +1,19 @@
 import BaseView from "./base-view.js";
-import { createMessageChannel } from "../adapters/broadcast-channel-adapter.js";
 import UserModel from "../models/user-model.js";
+import { createMessageChannel } from "../adapters/broadcast-channel-adapter.js";
+import { createLocalStorage } from "../adapters/local-storage-adapter.js";
 
 export default class ChatView extends BaseView {
     #messageChannel
+    #messageStorage
     #currentUser
-    #messages = []
+
+    #messages
 
     constructor(...args) {
         super(...args);
 
-        // чат должен быть привязан к фильму
+        // чат привязан к фильму
         const channelName = `flickmate_channel_${this._data.id}`;
         this.#messageChannel = createMessageChannel(channelName);
 
@@ -20,23 +23,35 @@ export default class ChatView extends BaseView {
             this.#addChatMessage(message);
         });
 
+        // история сообщений чата привязана к фильму
+        const storageKey = `flickmate_chat_${this._data.id}`;
+        this.#messageStorage = createLocalStorage(storageKey);
+        this.#messages = this.#messageStorage.value ?? [];
+
         this.#currentUser = UserModel.getUsername();
     }
 
+    #isMyMessage(sender) {
+        return sender === this.#currentUser;
+    }
+
     #createMessageHTML({ sender, text }) {
-        const isMyMessage = sender === this.#currentUser;
+        const messageClass = `watch-chat-sender${this.#isMyMessage(sender) ? " watch-chat-message-author" : ""}`;
         return `
             <div class="watch-chat-message">
-                <span class="watch-chat-sender${isMyMessage ? " watch-chat-message-author" : ""}">${sender}:&nbsp;</span>
+                <span class="${messageClass}">${sender}:&nbsp;</span>
                 ${text}
             </div>
         `;
     }
 
-    sendMessage(messageText) {
+    #sendMessage(messageText) {
         if (!messageText) return;
+
         const message = { sender: this.#currentUser, text: messageText };
         this.#messageChannel.send(JSON.stringify(message));
+        this.#messageStorage.value = [...this.#messages, message];
+
         this.#addChatMessage(message);
     }
 
@@ -69,8 +84,8 @@ export default class ChatView extends BaseView {
         const sendBtn = event.target.closest(".watch-send-btn");
         if (sendBtn) {
             event.preventDefault();
-            const input = document.querySelector(".chat-input");
-            this.sendMessage(input.value);
+            const input = this._$el.querySelector(".chat-input");
+            this.#sendMessage(input.value);
             input.value = "";
         }
     }
@@ -87,10 +102,17 @@ export default class ChatView extends BaseView {
         this._$el.addEventListener("click", this.#handleClicks);
     }
 
+    #scrollToBottom() {
+        this._$el.scrollTop = this._$el.scrollHeight;
+    }
+
+    #focusOnInput() {
+        this._$el.querySelector(".chat-input").focus();
+    }
+
     render() {
         super.render();
-        const chat = document.querySelector("#watch-chat");
-        chat.scrollTop = chat.scrollHeight;
-        chat.querySelector(".chat-input").focus();
+        this.#scrollToBottom();
+        this.#focusOnInput();
     }
 }

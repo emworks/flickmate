@@ -1,24 +1,22 @@
 export default [
     {
-        "id": 1,
+        "id": "-Cs3GyzRB2k?si=gON_3Ryi-msckxeM",
         "title": "Аватар",
         "subtitle": "Avatar, 2009",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4adf61aa-3cb7-4381-9245-523971e5b4c8/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/4adf61aa-3cb7-4381-9245-523971e5b4c8/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2009" }
         ]
     },
     {
-        "id": 2,
+        "id": "wGh3_6vXKFE?si=XSoFxwrRFpoT6IFt",
         "title": "Интерстеллар",
         "subtitle": "Interstellar, 2014",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/430042eb-ee69-4818-aed0-a312400a26bf/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/430042eb-ee69-4818-aed0-a312400a26bf/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2014" },
             { name: "Жанр", value: "фантастика, драма, приключения" },
@@ -30,217 +28,199 @@ export default [
         ]
     },
     {
-        "id": 3,
+        "id": "qlrpeYdm9Ec?si=qN7flrk3BTzALy-K",
         "title": "Начало",
         "subtitle": "Inception, 2010",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/8ab9a119-dd74-44f0-baec-0629797483d7/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/8ab9a119-dd74-44f0-baec-0629797483d7/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2010" }
         ]
     },
     {
-        "id": 4,
+        "id": "BG-WsYJScfY?si=0tri6oDhh1EzlOvK",
         "title": "Мстители: Война бесконечности",
         "subtitle": "Avengers: Infinity War, 2018",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/af92d310-4ae5-4daa-b42c-5bcc380c2e6e/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/af92d310-4ae5-4daa-b42c-5bcc380c2e6e/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2018" }
         ]
     },
     {
-        "id": 5,
+        "id": "tVZw7vQGR30?si=t5DD3I_QbtOs1O7Y",
         "title": "Матрица",
         "subtitle": "The Matrix, 1999",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/cf1970bc-3f08-4e0e-a095-2fb57c3aa7c6/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/cf1970bc-3f08-4e0e-a095-2fb57c3aa7c6/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "1999" }
         ]
     },
     {
-        "id": 6,
+        "id": "JNeIqSao7JM?si=DvPJ8-h00Lzps392",
         "title": "Мстители: Финал",
         "subtitle": "Avengers: Endgame, 2019",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/ae22f153-9715-41bb-adb4-f648b3e16092/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/ae22f153-9715-41bb-adb4-f648b3e16092/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2019" }
         ]
     },
     {
-        "id": 7,
+        "id": "BGUemDhaxZg?si=V1iRWX67Il-l507M",
         "title": "Дюна",
         "subtitle": "Dune: Part One, 2021",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/9eb762d6-4cdd-464f-9937-aebf30067acc/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/9eb762d6-4cdd-464f-9937-aebf30067acc/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2021" }
         ]
     },
     {
-        "id": 8,
+        "id": "CBrM51C97e0?si=UJtI3WbDfQLMVt2R",
         "title": "Пятый элемент",
         "subtitle": "The Fifth Element, 1997",
         "details": "Франция • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/9e9e2b2c-a3c1-462e-8d84-e6a19fbe5b9c/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/9e9e2b2c-a3c1-462e-8d84-e6a19fbe5b9c/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "1997" }
         ]
     },
     {
-        "id": 9,
+        "id": "zpwHYFqjDA0?si=33lAZRRLlN6_dfcf",
         "title": "Стражи Галактики",
         "subtitle": "Guardians of the Galaxy, 2014",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/2e6ab20b-7cf1-49e7-b465-bd5a71c13fa3/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/2e6ab20b-7cf1-49e7-b465-bd5a71c13fa3/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2014" }
         ]
     },
     {
-        "id": 10,
+        "id": "UDA6Kd6uYqs?si=tzmx7VB95msmsAMF",
         "title": "Кракен",
         "subtitle": "2025",
         "details": "Россия • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/10809116/b722ab4d-497b-4a62-b243-95ca989401ff/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/10809116/b722ab4d-497b-4a62-b243-95ca989401ff/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2025" }
         ]
     },
     {
-        "id": 11,
+        "id": "BcEZ6ox6vzI?si=Ty_wC_r33FBmgZDj",
         "title": "Темный рыцарь",
         "subtitle": "The Dark Knight, 2008",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/0fa5bf50-d5ad-446f-a599-b26d070c8b99/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/0fa5bf50-d5ad-446f-a599-b26d070c8b99/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2008" }
         ]
     },
     {
-        "id": 12,
+        "id": "XsoL3c0FdQg?si=MRt3hvA29Mz6UCPB",
         "title": "Доктор Стрэндж",
         "subtitle": "Doctor Strange, 2016",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/bb966b79-5b10-485d-88d7-fb6aeb79b185/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/bb966b79-5b10-485d-88d7-fb6aeb79b185/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2016" }
         ]
     },
     {
-        "id": 13,
+        "id": "ET_TnwrzdJ4?si=gb0ljbRGGoYJkFe9",
         "title": "Мстители",
         "subtitle": "The Avengers, 2012",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/1898899/972b7f43-9677-40ce-a9bc-02a88ad3919d/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/1898899/972b7f43-9677-40ce-a9bc-02a88ad3919d/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2012" }
         ]
     },
     {
-        "id": 14,
+        "id": "l0gIlQOlHnI?si=8OGnj_h6bgMvBbpr",
         "title": "Терминатор 2: Судный день",
         "subtitle": "Terminator 2: Judgment Day, 1991",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/10893610/2dd14742-f241-42ca-9db4-331e3a483c50/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/10893610/2dd14742-f241-42ca-9db4-331e3a483c50/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "1991" }
         ]
     },
     {
-        "id": 15,
+        "id": "15q-KZtkNMo?si=0ZnA1nu5Z4zHhK0S",
         "title": "Железный человек",
         "subtitle": "Iron Man, 2008",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/c8e2f069-15f1-4803-95c0-aba858fec360/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/4774061/c8e2f069-15f1-4803-95c0-aba858fec360/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2008" }
         ]
     },
     {
-        "id": 16,
+        "id": "6NoZyEOttBw?si=iRx_OF4X7PK9UNgw",
         "title": "Назад в будущее",
         "subtitle": "Back to the Future, 1985",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/73cf2ed0-fd52-47a2-9e26-74104360786a/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/1599028/73cf2ed0-fd52-47a2-9e26-74104360786a/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "1985" }
         ]
     },
     {
-        "id": 17,
+        "id": "P3r7RRJszC0?si=QBv1pazfeTJz_jEC",
         "title": "Марсианин",
         "subtitle": "The Martian, 2015",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/1900788/6f631486-e947-487d-94d6-41c2b5a8f5a0/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/1900788/6f631486-e947-487d-94d6-41c2b5a8f5a0/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2015" }
         ]
     },
     {
-        "id": 18,
+        "id": "mUN11OqyJPE?si=n0-I0IF4fRFN_Aor",
         "title": "Кибердеревня",
         "subtitle": "2023",
         "details": "Россия • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/9784475/70c75cf3-f456-4474-a900-9a38c1bb2987/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/9784475/70c75cf3-f456-4474-a900-9a38c1bb2987/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2023" }
         ]
     },
     {
-        "id": 19,
+        "id": "1EcZ9_-h710?si=NEBAFCPfMoaSmMpk",
         "title": "Главный герой",
         "subtitle": "Free Guy, 2021",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/db4fbef1-466a-4dec-9b7a-d4f13eb45738/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/db4fbef1-466a-4dec-9b7a-d4f13eb45738/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2021" }
         ]
     },
     {
-        "id": 20,
+        "id": "UQ4DujiiS1o?si=CFX7u1c-i67c7LY5",
         "title": "Первому игроку приготовиться",
         "subtitle": "Ready Player One, 2018",
         "details": "США • фантастика",
         "img": "https://avatars.mds.yandex.net/get-kinopoisk-image/1946459/5ae82f4b-fd6a-46b5-b5ba-897106eb1eae/136x204",
         "imgBig": "https://avatars.mds.yandex.net/get-kinopoisk-image/1946459/5ae82f4b-fd6a-46b5-b5ba-897106eb1eae/600x900",
-        "link": "#",
         "metadata": [
             { name: "Год производства", value: "2018" }
         ]

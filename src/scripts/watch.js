@@ -20,10 +20,11 @@ class WatchPage extends BaseView {
 
         // Получаем id фильма из ?movie_id
         const params = new URLSearchParams(window.location.search);
-        const movieId = Number(params.get("movie_id"));
+        const movieId = params.get("movie_id");
+        const decodedMovieId = decodeURIComponent(movieId);
 
         // Получаем информацию о фильме из модели
-        this.#movie = MovieModel.getById(movieId);
+        this.#movie = MovieModel.getById(decodedMovieId);
     }
 
     /** Метод для рендера HTML (обязательный для BaseView) */

@@ -60,7 +60,7 @@ export default class MovieModalView extends BaseView {
                         </div>
                         <menu>
                             <button class="movie-modal-settings-btn secondary-btn">Настройки сеанса</button>
-                            <a class="primary-btn" href="watch.html?movie_id=${this._data.id}">Смотреть вместе →</a>
+                            <a class="primary-btn" href="watch.html?movie_id=${encodeURIComponent(this._data.id)}">Смотреть вместе →</a>
                         </menu>
                     </div>
                 </section>

@@ -13,15 +13,6 @@ export default class MovieListView extends BaseView {
     #movieModal;
 
     /**
-     * @param {string} selector - CSS-селектор контейнера списка фильмов
-     * @param {Array<Object>} initialData - Массив объектов фильмов
-     */
-    constructor(selector, initialData = []) {
-        super(selector, initialData);
-        this.#movieModal = createMovieModal();
-    }
-
-    /**
      * Генерирует HTML для одной карточки фильма
      * @param {Object} movie - Объект фильма
      * @returns {string} HTML-код карточки
@@ -51,6 +42,7 @@ export default class MovieListView extends BaseView {
         return `
             <section class="movie-list">
                 ${this._data.map(this.#createItem.bind(this)).join("")}
+                <dialog id="movie-modal" aria-labelledby="movie-modal-title" aria-modal="true"></dialog>
             </section>
         `;
     }
@@ -88,5 +80,12 @@ export default class MovieListView extends BaseView {
     /** Добавляет обработчики событий после рендера */
     _attachEvents() {
         this._$el.addEventListener("click", this.#handleModal);
+    }
+
+    render() {
+        super.render();
+
+        // Создаём View модалки детального просмотра фильма
+        this.#movieModal = createMovieModal();
     }
 }

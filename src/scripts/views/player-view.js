@@ -1,8 +1,8 @@
 import BaseView from "./base-view.js";
 
-export default class WatchHeaderView extends BaseView {
+export default class PlayerView extends BaseView {
     /** Метод для рендера HTML (обязательный для BaseView) */
     _createInnerHTML() {
-        return `<h1><a href="index.html">←</a>&nbsp;${this._data.title}</h1>`;
+        return `<video controls src="movie.mp4"></video>`;
     }
 }

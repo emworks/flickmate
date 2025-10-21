@@ -7,14 +7,6 @@ import BaseView from "./base-view";
  */
 export default class MovieModalView extends BaseView {
     /**
-     * @param {string} selector - CSS-селектор контейнера модалки
-     * @param {Object} initialData - Начальные данные для модалки
-     */
-    constructor(selector, initialData = {}) {
-        super(selector, initialData);
-    }
-
-    /**
      * Открывает модалку с переданными данными фильма
      * @param {Object} movie - Объект фильма
      */
@@ -91,6 +83,8 @@ export default class MovieModalView extends BaseView {
      * @param {MouseEvent} event
      */
     #handleClicks = (event) => {
+        event.stopPropagation();
+        
         const closeBtn = event.target.closest("[data-modal-close]");
         if (closeBtn) return this.close();
 

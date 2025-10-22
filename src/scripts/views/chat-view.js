@@ -60,14 +60,33 @@ export default class ChatView extends BaseView {
         this.render();
     }
 
+    #createEmptyPlaceholder() {
+        return `
+            <div class="chat-empty-state">
+                <button class="popcorn" title="Пока никто не написал... щёлкни!">🍿</button>
+                <p>Тут пока тихо...</p>
+            </div>
+        `;
+    }
+
+    #createList() {
+        if (!this.#messages?.length) {
+            return this.#createEmptyPlaceholder();
+        }
+
+        return `
+            <div class="watch-chat-messages" id="chat-messages">
+                ${this.#messages.map(this.#createMessageHTML.bind(this)).join("")}
+            </div>
+        `
+    }
+
     /** Метод для рендера HTML (обязательный для BaseView) */
     _createInnerHTML() {
         return `
             <div>
                 <h2>Чат</h2>
-                <div class="watch-chat-messages" id="chat-messages">
-                    ${this.#messages.map(this.#createMessageHTML.bind(this)).join("")}
-                </div>
+                ${this.#createList()}
                 <form class="watch-chat-form" id="chat-form">
                     <input class="chat-input" type="text" placeholder="Написать сообщение..." />
                     <button class="watch-send-btn primary-btn" type="submit">↑</button>
@@ -104,7 +123,9 @@ export default class ChatView extends BaseView {
 
     #scrollToBottom() {
         const messagesContainer = this._$el.querySelector("#chat-messages");
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        if (messagesContainer) {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
     }
 
     #focusOnInput() {

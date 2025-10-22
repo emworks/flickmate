@@ -3,6 +3,6 @@ import BaseView from "./base-view.js";
 export default class IndexHeaderView extends BaseView {
     /** Метод для рендера HTML (обязательный для BaseView) */
     _createInnerHTML() {
-        return "<h1>Каталог фильмов</h1>";
+        return `<h1 class="truncate">Каталог фильмов</h1>`;
     }
 }

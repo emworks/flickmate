@@ -1,0 +1,120 @@
+/* Чат */
+#watch-chat {
+    width: 300px;
+}
+
+#watch-chat>div {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+}
+
+#watch-chat h2 {
+    position: relative;
+    box-shadow: var(--box-shadow);
+    padding-block-end: calc(var(--spacing) * 1);
+}
+
+/* Список сообщений */
+.watch-chat-messages {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-block-start: calc(var(--spacing) * 2);
+}
+
+.watch-chat-message:first-child {
+    margin-block-start: 0;
+}
+
+.watch-chat-message {
+    margin-block: calc(var(--spacing) * 3);
+    word-wrap: break-word;
+}
+
+.watch-chat-sender {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-secondary);
+}
+
+.watch-chat-message-author {
+    color: var(--color-primary);
+}
+
+/* Пустой список */
+.chat-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.chat-empty-state .popcorn {
+    font-size: 4rem;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.1s ease;
+    background-color: transparent;
+    border: none;
+}
+
+.chat-empty-state .popcorn,
+.chat-empty-state>p {
+    opacity: 0.7;
+}
+
+.chat-empty-state .popcorn:hover,
+.chat-empty-state .popcorn:focus,
+.chat-empty-state .popcorn:active {
+    opacity: 1;
+}
+
+.chat-empty-state .popcorn:active {
+    animation: popcorn-shake 0.4s ease;
+}
+
+@keyframes popcorn-shake {
+
+    0%,
+    100% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    20% {
+        transform: rotate(-15deg) scale(1.05);
+    }
+
+    40% {
+        transform: rotate(10deg) scale(1.05);
+    }
+
+    60% {
+        transform: rotate(-8deg) scale(1.05);
+    }
+
+    80% {
+        transform: rotate(6deg) scale(1.05);
+    }
+}
+
+/* Форма ввода */
+.watch-chat-form {
+    display: flex;
+}
+
+.watch-chat-form input {
+    flex-grow: 1;
+    border: 1px solid var(--color-border);
+    background-color: transparent;
+    color: var(--color-base);
+    padding-inline: calc(var(--spacing) * 2);
+    padding-block: calc(var(--spacing) * 3);
+}
+
+.watch-chat-form button {
+    cursor: pointer;
+    min-width: 45px;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--text-h2);
+}

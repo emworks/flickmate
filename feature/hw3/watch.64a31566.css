@@ -1,0 +1,2 @@
+.watch-container{gap:calc(var(--spacing)*4);max-width:1440px;padding-block:calc(var(--spacing)*6);padding-inline:calc(var(--spacing)*6);height:calc(100vh - var(--main-header-height));flex-grow:1;display:flex}@media (width<=1024px){.watch-container{flex-direction:column;padding:0}#watch-player{height:40vh}#watch-chat{width:100%;height:60vh;padding-inline:calc(var(--spacing)*3);padding-block-end:calc(var(--spacing)*3)}#watch-chat h2{display:none}}
+/*# sourceMappingURL=watch.64a31566.css.map */

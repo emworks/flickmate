@@ -1,0 +1,1 @@
+{"mappings":"AAAA","sources":["src/styles/utils.css"],"sourcesContent":[".truncate {\n    text-overflow: ellipsis;\n    white-space: nowrap;\n    overflow: hidden;\n}"],"names":[],"version":3,"file":"flickmate.2a8e8943.css.map","sourceRoot":"/__parcel_source_root/"}

@@ -1,0 +1,12 @@
+#watch-player {
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.player-wrapper {
+  flex-grow: 1;
+  height: 100%;
+}
+/*# sourceMappingURL=watch.995fd301.css.map */

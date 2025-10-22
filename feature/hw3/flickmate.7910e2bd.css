@@ -1,0 +1,30 @@
+.primary-btn, .secondary-btn {
+  min-width: 185px;
+  height: 45px;
+  font-size: var(--text-button);
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.primary-btn {
+  background-color: var(--color-primary);
+  color: var(--color-h1);
+}
+
+.primary-btn:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.secondary-btn {
+  background-color: var(--color-secondary);
+  color: var(--color-bg);
+}
+
+.secondary-btn:hover {
+  background-color: var(--color-secondary-hover);
+}
+/*# sourceMappingURL=flickmate.7910e2bd.css.map */

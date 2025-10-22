@@ -7,14 +7,6 @@ import BaseView from "./base-view";
  */
 export default class MovieModalView extends BaseView {
     /**
-     * @param {string} selector - CSS-селектор контейнера модалки
-     * @param {Object} initialData - Начальные данные для модалки
-     */
-    constructor(selector, initialData = {}) {
-        super(selector, initialData);
-    }
-
-    /**
      * Открывает модалку с переданными данными фильма
      * @param {Object} movie - Объект фильма
      */
@@ -68,7 +60,7 @@ export default class MovieModalView extends BaseView {
                         </div>
                         <menu>
                             <button class="movie-modal-settings-btn secondary-btn">Настройки сеанса</button>
-                            <a class="movie-modal-watch-btn primary-btn" href="${this._data.link}">Смотреть вместе →</a>
+                            <a class="primary-btn" href="watch.html?movie_id=${encodeURIComponent(this._data.id)}">Смотреть вместе →</a>
                         </menu>
                     </div>
                 </section>
@@ -86,16 +78,13 @@ export default class MovieModalView extends BaseView {
         alert("Settings are not implemented");
     }
 
-    /** TODO: Переход на страницу просмотра фильма (заглушка) */
-    #navigateToWatchPage(movieId) {
-        alert("Watch page is not implemented");
-    }
-
     /**
-     * Обработчик кликов по кнопкам модалки
+     * Обработчик кликов
      * @param {MouseEvent} event
      */
-    #handleButtons = (event) => {
+    #handleClicks = (event) => {
+        event.stopPropagation();
+        
         const closeBtn = event.target.closest("[data-modal-close]");
         if (closeBtn) return this.close();
 
@@ -104,24 +93,18 @@ export default class MovieModalView extends BaseView {
             event.preventDefault();
             this.#showSettings();
         }
-
-        const watchBtn = event.target.closest(".movie-modal-watch-btn");
-        if (watchBtn) {
-            event.preventDefault();
-            this.#navigateToWatchPage(this._data.id);
-        }
     }
 
     /** Убирает события перед перерендером (BaseView) */
     _detachEvents() {
-        this._$el.removeEventListener("click", this.#handleButtons);
+        this._$el.removeEventListener("click", this.#handleClicks);
     }
 
     /** Добавляет события после рендера (BaseView) */
     _attachEvents() {
-        // Делегирование событий кликов на контейнер модалки
-        // Позволяет обрабатывать все кнопки внутри одной функции
-        this._$el.addEventListener("click", this.#handleButtons);
+        // Делегирование событий кликов на контейнер
+        // Позволяет обрабатывать все клики внутри одной функции
+        this._$el.addEventListener("click", this.#handleClicks);
     }
 }
 

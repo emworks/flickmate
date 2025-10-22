@@ -2,7 +2,7 @@
   "name": "Flickmate",
   "version": "1.0.0",
   "description": "",
-  "source": "src/index.html",
+  "source": "src/*.html",
   "scripts": {
     "start": "parcel",
     "build": "parcel build"

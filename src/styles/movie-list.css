@@ -9,7 +9,6 @@
 }
 
 .movie-item a {
-    text-decoration: none;
     display: flex;
     gap: calc(var(--spacing) * 3);
     text-align: left;

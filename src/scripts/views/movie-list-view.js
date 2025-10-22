@@ -13,23 +13,14 @@ export default class MovieListView extends BaseView {
     #movieModal;
 
     /**
-     * @param {string} selector - CSS-селектор контейнера списка фильмов
-     * @param {Array<Object>} initialData - Массив объектов фильмов
-     */
-    constructor(selector, initialData = []) {
-        super(selector, initialData);
-        this.#movieModal = createMovieModal();
-    }
-
-    /**
      * Генерирует HTML для одной карточки фильма
      * @param {Object} movie - Объект фильма
      * @returns {string} HTML-код карточки
      */
-    #createItem({ id, link, title, subtitle, img, details }) {
+    #createItem({ id, title, subtitle, img, details }) {
         return `
             <article class="movie-item">
-                <a href="${link}" data-modal-open data-id="${id}">
+                <a href="watch.html?movie_id=${encodeURIComponent(id)}" data-modal-open data-id="${id}">
                     <div class="movie-item-poster">
                         <img src="${img}" alt="${title}" loading="lazy" />
                     </div>
@@ -51,6 +42,7 @@ export default class MovieListView extends BaseView {
         return `
             <section class="movie-list">
                 ${this._data.map(this.#createItem.bind(this)).join("")}
+                <dialog id="movie-modal" aria-labelledby="movie-modal-title" aria-modal="true"></dialog>
             </section>
         `;
     }
@@ -74,7 +66,7 @@ export default class MovieListView extends BaseView {
         // даже если кликнули по вложенному тегу внутри карточки
         const movieItem = event.target.closest("[data-modal-open]");
         if (movieItem) {
-            const movieId = +movieItem.dataset.id;
+            const movieId = movieItem.dataset.id;
             const movie = MovieModel.getById(movieId);
             this.#movieModal.open(movie);
         }
@@ -88,5 +80,12 @@ export default class MovieListView extends BaseView {
     /** Добавляет обработчики событий после рендера */
     _attachEvents() {
         this._$el.addEventListener("click", this.#handleModal);
+    }
+
+    render() {
+        super.render();
+
+        // Создаём View модалки детального просмотра фильма
+        this.#movieModal = createMovieModal();
     }
 }

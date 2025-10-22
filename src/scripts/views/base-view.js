@@ -8,7 +8,6 @@
 export default class BaseView {
     /** @type {HTMLElement} Элемент контейнера, куда рендерится контент */
     _$el
-
     /** @type {any} Данные для отображения в компоненте */
     _data
 
@@ -18,6 +17,11 @@ export default class BaseView {
      */
     constructor(selector, initialData = {}) {
         this._$el = document.querySelector(selector);
+
+        if (!this._$el) {
+            throw new Error("Element is not found");
+        }
+
         this._data = initialData;
     }
 
@@ -32,18 +36,18 @@ export default class BaseView {
 
     /**
      * Метод для удаления событий перед перерендером.
-     * Должен быть реализован в наследнике.
+     * Может быть реализован в наследнике.
      */
     _detachEvents() {
-        throw new Error("Method _detachEvents() must be implemented");
+        return;
     }
 
     /**
      * Метод для установки событий после рендера.
-     * Должен быть реализован в наследнике.
+     * Может быть реализован в наследнике.
      */
     _attachEvents() {
-        throw new Error("Method _attachEvents() must be implemented");
+        return;
     }
 
     /**

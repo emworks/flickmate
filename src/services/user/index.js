@@ -16,7 +16,7 @@ const username = (() => {
  * Класс пользователя.
  * Отвечает за работу с данными о пользователе.
  */
-export default class UserModel {
+export class UserService {
     /**
      * Возвращает имя пользователя
      * @returns {string}

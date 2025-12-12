@@ -1,10 +1,10 @@
-import movies from "../../data/movies.js";
+import movies from "src/data/movies.js";
 
 /**
  * Класс модели фильмов.
  * Отвечает за работу с данными о фильмах.
  */
-export default class MovieModel {
+export class MovieService {
     /**
      * Возвращает все фильмы
      * @returns {Array<Object>} Массив объектов фильмов

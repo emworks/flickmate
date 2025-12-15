@@ -14,18 +14,18 @@ dialog::backdrop {
     background: rgba(0, 0, 0, 0.5);
 }
 
-.movie-modal-header {
+.header {
     display: flex;
     align-items: center;
     height: 70px;
     padding-inline: calc(var(--spacing) * 5);
 }
 
-.movie-modal-header h3 {
+.header h3 {
     flex-grow: 1;
 }
 
-.movie-modal-close-btn {
+.closeBtn {
     background: none;
     border: none;
     font-weight: var(--font-weight-bold);
@@ -34,16 +34,16 @@ dialog::backdrop {
     cursor: pointer;
 }
 
-.movie-modal-poster img {
+.poster img {
     width: 400px;
     object-fit: cover;
 }
 
-.movie-modal-body {
+.body {
     display: flex;
 }
 
-.movie-modal-content {
+.content {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
@@ -52,50 +52,50 @@ dialog::backdrop {
     padding-block-end: calc(var(--spacing) * 6);
 }
 
-.movie-modal-content>div {
+.content>div {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     gap: calc(var(--spacing) * 3);
 }
 
-.movie-modal-content ul {
+.content ul {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: calc(var(--spacing) * 2);
 }
 
-.movie-modal-content li {
+.content li {
     display: flex;
 }
 
-.movie-modal-content li>span:nth-child(1) {
+.content li>span:nth-child(1) {
     width: 160px;
     flex: 0 0 auto;
 }
 
-.movie-modal-content menu {
+.content menu {
     display: flex;
     justify-content: center;
     gap: calc(var(--spacing) * 7);
 }
 
 @media (max-width: 1024px) {
-    .movie-modal-header {
+    .header {
         height: 50px;
         padding-inline: calc(var(--spacing) * 4);
     }
 
-    .movie-modal-content {
+    .content {
         padding-block-end: calc(var(--spacing) * 2);
     }
 
-    .movie-modal-content li>span:nth-child(1) {
+    .content li>span:nth-child(1) {
         width: 140px;
     }
 
-    .movie-modal-content menu {
+    .content menu {
         flex-direction: column;
         gap: calc(var(--spacing) * 4);
     }
@@ -109,7 +109,7 @@ dialog::backdrop {
         overflow: hidden;
     }
 
-    .movie-modal-header {
+    .header {
         padding-inline: calc(var(--spacing) * 4);
         position: relative;
         width: 100vw;
@@ -117,22 +117,22 @@ dialog::backdrop {
         box-shadow: var(--box-shadow);
     }
 
-    .movie-modal-body {
+    .body {
         flex-direction: column;
         overflow-y: auto;
         height: calc(100vh - 120px);
     }
 
-    .movie-modal-content>div {
+    .content>div {
         padding-block: calc(var(--spacing) * 3) calc(var(--spacing) * 10);
     }
 
-    .movie-modal-poster img {
+    .poster img {
         object-fit: cover;
         width: 100%;
     }
 
-    .movie-modal-content menu {
+    .content menu {
         position: fixed;
         bottom: calc(var(--spacing) * 3);
         flex-direction: row;

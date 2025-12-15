@@ -1,9 +1,9 @@
 import { Player, Chat } from "src/components";
-import "./MovieWatch.css"
+import styles from "./index.module.css"
 
 export function MovieWatch({ movieId, poster }) {
     return (
-        <div className="watch-container">
+        <div className={styles.container}>
             <section id="watch-player">
                 <Player movieId={movieId} poster={poster} />
             </section>

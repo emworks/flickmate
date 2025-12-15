@@ -1,4 +1,4 @@
-import "./MovieModal.css"
+import styles from "./index.module.css"
 
 /**
  * Класс модального окна фильма.
@@ -43,16 +43,16 @@ export function MovieModal() {
     // /** Генерирует полный HTML модалки */
     // const createModal = () => {
     return (
-        <div className="movie-modal-wrapper">
-            <header className="movie-modal-header">
+        <div className={styles.wrapper}>
+            <header className={styles.header}>
                 <h3>Выбор фильма</h3>
-                <button className="movie-modal-close-btn" data-modal-close>×</button>
+                <button className={styles.closeBtn} data-modal-close>×</button>
             </header>
-            <section className="movie-modal-body">
-                <div className="movie-modal-poster">
+            <section className={styles.body}>
+                <div className={styles.poster}>
                     <img src="${this._data.imgBig}" alt="${this._data.title}" loading="lazy" />
                 </div>
-                <div className="movie-modal-content">
+                <div className={styles.content}>
                     <div>
                         <h2 id="movie-modal-title">${this._data.title}</h2>
                         {/* ${this.#createMetadataList()} */}

@@ -1,4 +1,4 @@
-.movie-list {
+.list {
     max-width: 1440px;
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -8,7 +8,7 @@
     margin: 0 auto;
 }
 
-.movie-item a {
+.item a {
     display: flex;
     gap: calc(var(--spacing) * 3);
     text-align: left;
@@ -19,21 +19,21 @@
     transition: all 0.3s ease-out;
 }
 
-.movie-item a:hover {
+.item a:hover {
     padding-inline: calc(var(--spacing) / 2);
 }
 
-.movie-item-poster {
+.poster {
     flex-shrink: 0;
 }
 
-.movie-item-poster img {
+.poster img {
     width: 102px;
     height: 153px;
     object-fit: cover;
 }
 
-.movie-item-desc {
+.desc {
     min-width: 0;
     display: flex;
     flex-direction: column;
@@ -41,24 +41,24 @@
 }
 
 @media (max-width: 1024px) {
-    .movie-list {
+    .list {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .movie-item a {
+    .item a {
         gap: calc(var(--spacing) * 4);
     }
 }
 
 @media (max-width: 600px) {
-    .movie-list {
+    .list {
         grid-template-columns: minmax(0, 1fr);
         padding-block: calc(var(--spacing));
         padding-inline: calc(var(--spacing) + 1rem);
         gap: 0;
     }
 
-    .movie-item a {
+    .item a {
         gap: calc(var(--spacing) * 4);
     }
 }

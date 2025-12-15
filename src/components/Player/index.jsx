@@ -1,8 +1,8 @@
-import "./Player.css"
+import styles from "./index.module.css"
 
 export function Player({ poster, movieId }) {
     return (
-        <div className="player-wrapper" style={{ background: `url(${poster}) center/contain no-repeat` }}>
+        <div className={styles.wrapper} style={{ background: `url(${poster}) center/contain no-repeat` }}>
             <iframe
                 width="100%"
                 height="100%"

@@ -99,11 +99,11 @@
 }
 
 /* Форма ввода */
-.watch-chat-form {
+.form {
     display: flex;
 }
 
-.watch-chat-form input {
+.form input {
     flex-grow: 1;
     border: 1px solid var(--color-border);
     background-color: transparent;
@@ -112,7 +112,7 @@
     padding-block: calc(var(--spacing) * 3);
 }
 
-.watch-chat-form button {
+.form button {
     cursor: pointer;
     min-width: 45px;
     font-weight: var(--font-weight-bold);

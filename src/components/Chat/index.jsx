@@ -1,7 +1,7 @@
 import { UserService } from "src/services";
 import { createMessageChannel } from "src/adapters/broadcast-channel-adapter.js";
 import { createLocalStorage } from "src/adapters/local-storage-adapter.js";
-import "./Chat.css"
+import styles from "./index.module.css"
 
 export function Chat() {
     // #messageChannel
@@ -85,7 +85,7 @@ export function Chat() {
         <div>
             <h2>Чат</h2>
             {/* ${this.#createList()} */}
-            <form className="watch-chat-form" id="chat-form">
+            <form className={styles.form} id="chat-form">
                 <input className="chat-input" type="text" placeholder="Написать сообщение..." />
                 <button className="watch-send-btn primary-btn" type="submit">↑</button>
             </form>

@@ -2,7 +2,7 @@
 import { createMovieModal } from "src/components";
 import { MovieService } from "src/services";
 import { Link } from "react-router-dom";
-import "./MovieList.css"
+import styles from "./index.module.css"
 
 /**
  * Класс для отображения списка фильмов.
@@ -14,14 +14,15 @@ export function MovieList({ movies }) {
      * @param {Object} movie - Объект фильма
      * @returns {string} HTML-код карточки
      */
+    // console.log(styles)
     const createItem = ({ id, title, subtitle, img, details }) => {
         return (
-            <article className="movie-item" key={id}>
+            <article className={styles.item} key={id}>
                 <Link to={`/watch/${encodeURIComponent(id)}`} data-modal-open data-id={id}>
-                    <div className="movie-item-poster">
+                    <div className={styles.poster}>
                         <img src={img} alt={title} loading="lazy" />
                     </div>
-                    <div className="movie-item-desc">
+                    <div className={styles.desc}>
                         <h2 className="truncate">{title}</h2>
                         <h3 className="truncate">{subtitle}</h3>
                         <p className="truncate">{details}</p>
@@ -32,7 +33,7 @@ export function MovieList({ movies }) {
     }
 
     return (
-        <section className="movie-list">
+        <section className={styles.list}>
             {movies.map(createItem)}
             <dialog id="movie-modal" aria-labelledby="movie-modal-title" aria-modal="true"></dialog>
         </section>

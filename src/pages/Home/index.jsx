@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { HomeHeader, MovieList } from "src/components";
+import { MovieList, PageWrapper, PageHeader, ContentWrapper } from "src/components";
 import { MovieService } from "src/services";
 
 /**
@@ -16,13 +16,13 @@ export function HomePage() {
     }, [])
 
     return (
-        <div className="page-wrapper">
-            <header id="page-header" className="main-header">
-                <HomeHeader />
-            </header>
-            <main id="movie-list-container" className="content-wrapper">
+        <PageWrapper>
+            <PageHeader>
+                <h1 className="truncate">Каталог фильмов</h1>
+            </PageHeader>
+            <ContentWrapper>
                 <MovieList movies={movies} />
-            </main>
-        </div>
+            </ContentWrapper>
+        </PageWrapper>
     )
 }

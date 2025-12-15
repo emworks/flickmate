@@ -71,26 +71,3 @@ a {
     color: var(--color-h1);
     text-decoration: none;
 }
-
-.page-wrapper {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    min-height: 100vh;
-}
-
-.main-header {
-    position: sticky;
-    top: calc(var(--spacing) * -3);
-    background-color: var(--color-bg);
-    padding-block: calc(var(--spacing) * 6) calc(var(--spacing) * 2);
-    padding-inline: calc(var(--spacing) * 6);
-    box-shadow: var(--box-shadow);
-    z-index: 1;
-    height: var(--main-header-height);
-}
-
-.content-wrapper {
-    flex-grow: 1;
-    display: flex;
-}

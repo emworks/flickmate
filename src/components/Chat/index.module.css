@@ -1,9 +1,6 @@
 /* Чат */
 .chat {
     width: 300px;
-}
-
-.chat>div {
     display: flex;
     flex-direction: column;
     overflow: hidden;

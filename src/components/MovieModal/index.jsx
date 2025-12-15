@@ -1,111 +1,96 @@
+
+import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import { MovieService } from "src/services";
 import styles from "./index.module.css"
 
 /**
  * Класс модального окна фильма.
  * Отвечает за отображение деталей фильма и работу с кнопками внутри модалки.
  */
-export function MovieModal() {
-    /**
-     * Открывает модалку с переданными данными фильма
-     * @param {Object} movie - Объект фильма
-     */
-    const open = (movie) => {
-        this._data = movie;
-        this.render();
-        this._$el.showModal(); // встроенный метод HTML-элемента <dialog>
-    }
+export function MovieModal({ movieId, isOpen, onClose }) {
+    const [movie, setMovie] = useState({})
+    const dialogRef = useRef(null);
 
-    /** Закрывает модалку */
-    const close = () => {
-        this._$el.close();
-    }
-
-    /** 
-     * Генерирует HTML для списка метаданных фильма
-     * @returns {string} HTML-строка с метаданными
-     */
-    const createMetadataList = () => {
-        if (!this._data.metadata || !this._data.metadata.length) {
-            return "Нет информации";
+    useEffect(() => {
+        if (movieId) {
+            const movie = MovieService.getById(movieId);
+            setMovie(movie);
+        } else {
+            setMovie({});
         }
+    }, [movieId]);
 
-        return `
+    // Открытие/закрытие нативного <dialog>
+    useEffect(() => {
+        const dialog = dialogRef.current;
+        if (!dialog) return;
+
+        if (isOpen && !dialog.open) dialog.showModal();
+        if (!isOpen && dialog.open) dialog.close();
+    }, [isOpen]);
+
+    // Обработчик закрытия диалога (клик вне модалки)
+    const handleCancel = (e) => {
+        e.preventDefault(); // чтобы не закрывалось через ESC автоматически
+        onClose();
+    };
+
+    if (!movie) return null;
+
+    const createMetadataList = () => {
+        if (!movie.metadata?.length) return <p>Нет информации</p>;
+
+        return (
             <ul>
-                ${this._data.metadata.map(({ name, value }) => `
-                    <li>
-                        <span>${name}:</span><span>${value}</span>
+                {movie.metadata.map(({ name, value }) => (
+                    <li key={name}>
+                        <span>{name}:</span> <span>{value}</span>
                     </li>
-                `).join("")}
+                ))}
             </ul>
-        `;
+        );
+    };
+
+    /** TODO: Показ уведомления о настройках (заглушка) */
+    const showSettings = () => {
+        alert("Settings are not implemented");
     }
 
-    // /** Генерирует полный HTML модалки */
-    // const createModal = () => {
     return (
-        <div className={styles.wrapper}>
-            <header className={styles.header}>
-                <h3>Выбор фильма</h3>
-                <button className={styles.closeBtn} data-modal-close>×</button>
-            </header>
-            <section className={styles.body}>
-                <div className={styles.poster}>
-                    <img src="${this._data.imgBig}" alt="${this._data.title}" loading="lazy" />
-                </div>
-                <div className={styles.content}>
-                    <div>
-                        <h2 id="movie-modal-title">${this._data.title}</h2>
-                        {/* ${this.#createMetadataList()} */}
+        <dialog ref={dialogRef} onCancel={handleCancel} aria-labelledby="movie-modal-title" aria-modal="true">
+            <div className={styles.wrapper}>
+                <header className={styles.header}>
+                    <h3>Выбор фильма</h3>
+                    <button className={styles.closeBtn} onClick={onClose}>×</button>
+                </header>
+
+                <section className={styles.body}>
+                    <div className={styles.poster}>
+                        <img src={movie.imgBig} alt={movie.title} loading="lazy" />
                     </div>
-                    <menu>
-                        <button className="movie-modal-settings-btn secondary-btn">Настройки сеанса</button>
-                        <a className="primary-btn" href="watch.html?movie_id=${encodeURIComponent(this._data.id)}">Смотреть вместе →</a>
-                    </menu>
-                </div>
-            </section>
-        </div>
-    )
-    // }
 
-    // /** Метод для рендера HTML (обязательный для BaseView) */
-    // const _createInnerHTML = () => {
-    //     return this.#createModal();
-    // }
+                    <div className={styles.content}>
+                        <div>
+                            <h2 id="movie-modal-title">{movie.title}</h2>
+                            {createMetadataList()}
+                        </div>
 
-    // /** TODO: Показ уведомления о настройках (заглушка) */
-    // const showSettings = () => {
-    //     alert("Settings are not implemented");
-    // }
+                        <menu>
+                            <button className="secondary-btn" onClick={showSettings}>
+                                Настройки сеанса
+                            </button>
 
-    // /**
-    //  * Обработчик кликов
-    //  * @param {MouseEvent} event
-    //  */
-    // const handleClicks = (event) => {
-    //     event.stopPropagation();
-
-    //     const closeBtn = event.target.closest("[data-modal-close]");
-    //     if (closeBtn) return this.close();
-
-    //     const settingsBtn = event.target.closest(".movie-modal-settings-btn");
-    //     if (settingsBtn) {
-    //         event.preventDefault();
-    //         this.#showSettings();
-    //     }
-    // }
-
-    // /** Убирает события перед перерендером (BaseView) */
-    // _detachEvents() {
-    //     this._$el.removeEventListener("click", this.#handleClicks);
-    // }
-
-    // /** Добавляет события после рендера (BaseView) */
-    // _attachEvents() {
-    //     // Делегирование событий кликов на контейнер
-    //     // Позволяет обрабатывать все клики внутри одной функции
-    //     this._$el.addEventListener("click", this.#handleClicks);
-    // }
+                            <Link
+                                className="primary-btn"
+                                to={`/watch/${encodeURIComponent(movieId)}`}
+                            >
+                                Смотреть вместе →
+                            </Link>
+                        </menu>
+                    </div>
+                </section>
+            </div>
+        </dialog>
+    );
 }
-
-/** Фабрика для создания модалки */
-export const createMovieModal = () => new MovieModalView("#movie-modal");

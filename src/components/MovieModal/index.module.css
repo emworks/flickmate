@@ -37,6 +37,7 @@ dialog::backdrop {
 .poster img {
     width: 400px;
     object-fit: cover;
+    min-height: 600px;
 }
 
 .body {

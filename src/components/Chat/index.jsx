@@ -1,137 +1,84 @@
-import { UserService } from "src/services";
-import { createMessageChannel } from "src/adapters/broadcast-channel-adapter.js";
-import { createLocalStorage } from "src/adapters/local-storage-adapter.js";
+import { useState, useEffect, useRef } from "react";
+import cx from "classnames";
+import { useCurrentUser, useLocalStorage, useMessageChannel } from "src/hooks"
 import styles from "./index.module.css"
 
-export function Chat() {
-    // #messageChannel
-    // #messageStorage
-    // #currentUser
+export function Chat({ movieId }) {
+    if (!movieId) {
+        return null // TODO: использовать loader
+    }
 
-    // #messages
+    const currentUser = useCurrentUser()
+    const messagesEndRef = useRef(null);
+    const inputRef = useRef(null);
 
-    // constructor(...args) {
-    //     super(...args);
+    // история сообщений чата привязана к фильму
+    const { value: messages, setValue: setMessages } = useLocalStorage(`flickmate_chat_${movieId}`, [])
 
-    //     // чат привязан к фильму
-    //     const channelName = `flickmate_channel_${this._data.id}`;
-    //     this.#messageChannel = createMessageChannel(channelName);
+    const [inputValue, setInputValue] = useState("")
 
-    //     this.#messageChannel.onMessage((messageData) => {
-    //         if (!messageData) return;
-    //         const message = JSON.parse(messageData);
-    //         this.#addChatMessage(message);
-    //     });
+    const { send: sendChannelMessage } = useMessageChannel(`flickmate_channel_${movieId}`, (message) => {
+        setMessages(prev => [...prev, message]);
+    })
 
-    //     // история сообщений чата привязана к фильму
-    //     const storageKey = `flickmate_chat_${this._data.id}`;
-    //     this.#messageStorage = createLocalStorage(storageKey);
-    //     this.#messages = this.#messageStorage.value ?? [];
+    const sendMessage = (event) => {
+        event.preventDefault()
+        if (!inputValue.trim()) return
 
-    //     this.#currentUser = UserService.getUsername();
-    // }
+        const message = {
+            id: `${currentUser}_${Date.now()}`,
+            sender: currentUser,
+            text: inputValue.trim(),
+        };
 
-    // #isMyMessage(sender) {
-    //     return sender === this.#currentUser;
-    // }
+        setMessages(prev => [...prev, message]);
+        sendChannelMessage(message);
 
-    // #createMessageHTML({ sender, text }) {
-    //     const messageClass = `watch-chat-sender${this.#isMyMessage(sender) ? " watch-chat-message-author" : ""}`;
-    //     return `
-    //         <div className="watch-chat-message">
-    //             <span className="${messageClass}">${sender}:&nbsp;</span>
-    //             ${text}
-    //         </div>
-    //     `;
-    // }
+        setInputValue("")
+    }
 
-    // #sendMessage(messageText) {
-    //     if (!messageText) return;
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+        inputRef.current?.focus();
+    }, [messages])
 
-    //     const message = { sender: this.#currentUser, text: messageText };
-    //     this.#messageChannel.send(JSON.stringify(message));
-    //     this.#messageStorage.value = [...this.#messages, message];
-
-    //     this.#addChatMessage(message);
-    // }
-
-    // #addChatMessage(message) {
-    //     this.#messages.push(message);
-    //     this.render();
-    // }
-
-    // #createEmptyPlaceholder() {
-    //     return `
-    //         <div className="chat-empty-state">
-    //             <button className="popcorn" title="Пока никто не написал... щёлкни!">🍿</button>
-    //             <p>Тут пока тихо...</p>
-    //         </div>
-    //     `;
-    // }
-
-    // #createList() {
-    //     if (!this.#messages?.length) {
-    //         return this.#createEmptyPlaceholder();
-    //     }
-
-    //     return `
-    //         <div className="watch-chat-messages" id="chat-messages">
-    //             ${this.#messages.map(this.#createMessageHTML.bind(this)).join("")}
-    //         </div>
-    //     `
-    // }
+    const isMyMessage = (sender) => sender === currentUser
 
     return (
-        <div>
+        <div className={styles.chat}>
             <h2>Чат</h2>
-            {/* ${this.#createList()} */}
-            <form className={styles.form} id="chat-form">
-                <input className="chat-input" type="text" placeholder="Написать сообщение..." />
-                <button className="watch-send-btn primary-btn" type="submit">↑</button>
+            {!messages?.length && (
+                <div className={styles.emptyState}>
+                    <button title="Пока никто не написал... щёлкни!">🍿</button>
+                    <p>Тут пока тихо...</p>
+                </div>
+            )}
+            {!!messages?.length && (
+                <div className={styles.list}>
+                    {messages.map(({ sender, text, id }) => {
+                        const cls = cx(styles.sender, {
+                            [styles.author]: isMyMessage(sender)
+                        })
+                        return (
+                            <div className={styles.item} key={id}>
+                                <span className={cls}>{sender}:&nbsp;</span>
+                                {text}
+                            </div>
+                        )
+                    })}
+                </div>
+            )}
+            <form className={styles.form} onSubmit={sendMessage}>
+                <input
+                    type="text"
+                    placeholder="Написать сообщение..."
+                    name="message"
+                    value={inputValue}
+                    onChange={(event) => setInputValue(event.target.value)}
+                    autoComplete="off"
+                />
+                <button className="primary-btn" type="submit">↑</button>
             </form>
         </div>
     )
-
-    // /**
-    //  * Обработчик кликов
-    //  * @param {MouseEvent} event
-    //  */
-    // #handleClicks = (event) => {
-    //     const sendBtn = event.target.closest(".watch-send-btn");
-    //     if (sendBtn) {
-    //         event.preventDefault();
-    //         const input = this._$el.querySelector(".chat-input");
-    //         this.#sendMessage(input.value);
-    //         input.value = "";
-    //     }
-    // }
-
-    // /** Убирает события перед перерендером (BaseView) */
-    // _detachEvents() {
-    //     this._$el.removeEventListener("click", this.#handleClicks);
-    // }
-
-    // /** Добавляет события после рендера (BaseView) */
-    // _attachEvents() {
-    //     // Делегирование событий на контейнер
-    //     // Позволяет обрабатывать события внутри одной функции
-    //     this._$el.addEventListener("click", this.#handleClicks);
-    // }
-
-    // #scrollToBottom() {
-    //     const messagesContainer = this._$el.querySelector("#chat-messages");
-    //     if (messagesContainer) {
-    //         messagesContainer.scrollTop = messagesContainer.scrollHeight;
-    //     }
-    // }
-
-    // #focusOnInput() {
-    //     this._$el.querySelector(".chat-input").focus();
-    // }
-
-    // render() {
-    //     super.render();
-    //     this.#scrollToBottom();
-    //     this.#focusOnInput();
-    // }
 }

@@ -7,7 +7,7 @@ export default class BroadcastChannelAdapter {
         } catch (err) {
             console.error("Ошибка создания Broadcast Channel:", err);
         }
-        
+
     }
 
     /**
@@ -32,6 +32,10 @@ export default class BroadcastChannelAdapter {
         } catch (err) {
             console.error("Ошибка подписки на новые сообщения:", err);
         }
+    }
+
+    close() {
+        this.#channel.close();
     }
 }
 

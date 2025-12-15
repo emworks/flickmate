@@ -1,12 +1,18 @@
 /* Плеер */
-#watch-player {
+.wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
 }
 
-.wrapper {
+.player {
     height: 100%;
     flex-grow: 1;
+}
+
+@media (max-width: 1024px) {
+    .player {
+        height: 40vh;
+    }
 }

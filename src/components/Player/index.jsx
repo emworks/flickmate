@@ -1,5 +1,14 @@
 import styles from "./index.module.css"
 
+/**
+ * Компонент видеоплеера
+ *
+ * Props:
+ * - poster: string — ссылка на постер фильма, показывается на фоне плеера
+ * - movieId: string — ID видео на YouTube (будет вставлено в iframe)
+ *
+ * Компонент просто оборачивает iframe YouTube в блок с постером
+ */
 export function Player({ poster, movieId }) {
     return (
         <div className={styles.wrapper}>

@@ -3,7 +3,7 @@ import { HomeHeader, MovieList } from "src/components";
 import { MovieService } from "src/services";
 
 /**
- * Класс главной страницы приложения.
+ * Компонент главной страницы приложения.
  * Отвечает за инициализацию и рендер списка фильмов.
  */
 export function HomePage() {

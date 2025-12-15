@@ -5,13 +5,19 @@ import { MovieService } from "src/services";
 import styles from "./index.module.css"
 
 /**
- * Класс модального окна фильма.
- * Отвечает за отображение деталей фильма и работу с кнопками внутри модалки.
+ * Компонент модального окна фильма
+ * 
+ * Props:
+ * - movieId: string | undefined — id фильма для отображения
+ * - isOpen: boolean — открыта ли модалка
+ * - onClose: function — функция закрытия модалки
  */
 export function MovieModal({ movieId, isOpen, onClose }) {
     const [movie, setMovie] = useState({})
-    const dialogRef = useRef(null);
+    // Ref для управления нативным <dialog>
+    const dialogRef = useRef(null)
 
+    // Получение данных фильма при смене movieId
     useEffect(() => {
         if (movieId) {
             const movie = MovieService.getById(movieId);
@@ -21,7 +27,7 @@ export function MovieModal({ movieId, isOpen, onClose }) {
         }
     }, [movieId]);
 
-    // Открытие/закрытие нативного <dialog>
+    // Открытие/закрытие нативного <dialog> при изменении isOpen
     useEffect(() => {
         const dialog = dialogRef.current;
         if (!dialog) return;
@@ -36,21 +42,8 @@ export function MovieModal({ movieId, isOpen, onClose }) {
         onClose();
     };
 
+    // Если movie нет — не рендерим ничего
     if (!movie) return null;
-
-    const createMetadataList = () => {
-        if (!movie.metadata?.length) return <p>Нет информации</p>;
-
-        return (
-            <ul>
-                {movie.metadata.map(({ name, value }) => (
-                    <li key={name}>
-                        <span>{name}:</span> <span>{value}</span>
-                    </li>
-                ))}
-            </ul>
-        );
-    };
 
     /** TODO: Показ уведомления о настройках (заглушка) */
     const showSettings = () => {
@@ -64,23 +57,30 @@ export function MovieModal({ movieId, isOpen, onClose }) {
                     <h3>Выбор фильма</h3>
                     <button className={styles.closeBtn} onClick={onClose}>×</button>
                 </header>
-
                 <section className={styles.body}>
                     <div className={styles.poster}>
                         <img src={movie.imgBig} alt={movie.title} loading="lazy" />
                     </div>
-
                     <div className={styles.content}>
                         <div>
                             <h2 id="movie-modal-title">{movie.title}</h2>
-                            {createMetadataList()}
+                            {!movie.metadata?.length && <p>Нет информации</p>}
+                            {/* Информация о фильме (если есть) */}
+                            {!!movie.metadata?.length && (
+                                <ul>
+                                    {movie.metadata.map(({ name, value }) => (
+                                        <li key={name}>
+                                            <span>{name}:</span> <span>{value}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
                         </div>
-
                         <menu>
                             <button className="secondary-btn" onClick={showSettings}>
                                 Настройки сеанса
                             </button>
-
+                            {/* Link из react-router-dom для навигации без перезагрузки */}
                             <Link
                                 className="primary-btn"
                                 to={`/watch/${encodeURIComponent(movieId)}`}

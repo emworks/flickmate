@@ -4,7 +4,7 @@ import { WatchHeader, MovieWatch } from "src/components";
 import { MovieService } from "src/services";
 
 /**
- * Класс страницы совместного просмотра фильма.
+ * Компонент страницы совместного просмотра фильма.
  * Отвечает за инициализацию и рендер экрана совместного просмотра.
  */
 export function WatchPage() {

@@ -13,6 +13,7 @@ npm run build -- --public-url ./
 For `vite`:
 ```
 npm run build -- --base /flickmate/feature/abc
+cp ./dist/index.html ./dist/404.html
 ```
 3. Update the `demo` branch
 ```

@@ -20,8 +20,11 @@ export function MovieModal({ movieId, isOpen, onClose }) {
     // Получение данных фильма при смене movieId
     useEffect(() => {
         if (movieId) {
-            const movie = MovieService.getById(movieId);
-            setMovie(movie);
+            MovieService.getById(movieId).then((data) => {
+                setMovie(data);
+            }).catch(() => {
+                // TODO: Добавить обработку ошибки
+            });
         } else {
             setMovie({});
         }

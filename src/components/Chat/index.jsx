@@ -49,7 +49,7 @@ export function Chat({ movieId }) {
             // prev здесь – это messages, полученные ранее из useLocalStorage
             setMessages(prev => prev.length ? prev : formatted);
         }).catch(() => {
-            // TODO: Добавить обработку ошибки, если нужно
+            // TODO: Добавить обработку ошибки
         });
     }, [movieId]);
 
@@ -90,7 +90,7 @@ export function Chat({ movieId }) {
             // Очищаем поле ввода после отправки сообщения
             setInputValue("")
         }).catch(() => {
-            // TODO: Добавить обработку ошибки, если нужно
+            // TODO: Добавить обработку ошибки
         });
     }
 

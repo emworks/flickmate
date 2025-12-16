@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import cx from "classnames";
 import { useCurrentUser, useLocalStorage, useMessageChannel } from "src/hooks"
+import { ChatService } from "src/services"
 import styles from "./index.module.css"
 
 /**
@@ -30,6 +31,30 @@ export function Chat({ movieId }) {
     // Ключ в localStorage зависит от movieId, чтобы чат был привязан к конкретному фильму
     const { value: messages, setValue: setMessages } = useLocalStorage(`flickmate_chat_${movieId}`, [])
 
+    // Загружаем сообщения "с сервера" при открытии чата
+    useEffect(() => {
+        // Используется публичный тестовый API, 
+        // который не поддерживает чаты по фильмам,
+        // поэтому movieId здесь не передаётся
+        ChatService.getMessages().then(apiMessages => {
+            // Берём 5 псевдослучайных сообщений
+            // и приводим объект к нужному для отображения формату
+            const formatted = apiMessages
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 5)
+                .map(item => ({
+                    id: `api_${item.id}`,
+                    sender: item.email,
+                    text: item.body,
+                }));
+
+            // Если в localStorage ещё нет сообщений — инициализируем чат данными с сервера
+            setMessages(prev => prev.length ? prev : formatted);
+        }).catch(() => {
+            // TODO: Добавить обработку ошибки, если нужно
+        });
+    }, [movieId]);
+
     // Локальное состояние поля ввода
     const [inputValue, setInputValue] = useState("")
 
@@ -52,12 +77,21 @@ export function Chat({ movieId }) {
             text: inputValue.trim(),
         };
 
+        // POST-запрос используется только для демонстрации отправки данных на сервер
+        // Успешную отправку сообщения и ответ можно увидеть на вкладке Network
+        // Реальное состояние чата хранится локально (localStorage + BroadcastChannel)
+        ChatService.sendMessage({
+            movieId,
+            sender: currentUser,
+            text: inputValue,
+        }).catch(() => {
+            // TODO: Добавить обработку ошибки, если нужно
+        });
+
         // Добавляем сообщение в текущую вкладку
         setMessages(prev => [...prev, message]);
-
         // Отправляем сообщение через BroadcastChannel в другие вкладки
         sendChannelMessage(message);
-
         // Очищаем поле ввода после отправки сообщения
         setInputValue("")
     }

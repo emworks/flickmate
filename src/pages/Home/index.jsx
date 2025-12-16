@@ -11,8 +11,11 @@ export function HomePage() {
 
     useEffect(() => {
         // Получаем все фильмы из модели
-        const movies = MovieService.getAll();
-        setMovies(movies);
+        MovieService.getAll().then((data) => {
+            setMovies(data);
+        }).catch(() => {
+            // TODO: Добавить обработку ошибки
+        });
     }, [])
 
     return (

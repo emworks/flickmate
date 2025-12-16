@@ -1,4 +1,4 @@
-import movies from "src/data/movies.js";
+const API_URL = import.meta.env.BASE_URL + "api";
 
 /**
  * Класс модели фильмов.
@@ -9,8 +9,9 @@ export class MovieService {
      * Возвращает все фильмы
      * @returns {Array<Object>} Массив объектов фильмов
      */
-    static getAll() {
-        return movies;
+    static async getAll() {
+        const response = await fetch(`${API_URL}/movies.json`);
+        return response.json();
     }
 
     /**
@@ -18,7 +19,8 @@ export class MovieService {
      * @param {number} id - Идентификатор фильма
      * @returns {Object|undefined} Объект фильма или undefined, если не найден
      */
-    static getById(id) {
+    static async getById(id) {
+        const movies = await MovieService.getAll()
         return movies.find(movie => movie.id === id);
     }
 }

@@ -15,8 +15,11 @@ export function WatchPage() {
         const decodedMovieId = decodeURIComponent(movieId);
 
         // Получаем информацию о фильме из модели
-        const movie = MovieService.getById(decodedMovieId);
-        setMovie(movie);
+        MovieService.getById(decodedMovieId).then((data) => {
+            setMovie(data);
+        }).catch(() => {
+            // TODO: Добавить обработку ошибки
+        });
     }, [movieId])
 
     return (

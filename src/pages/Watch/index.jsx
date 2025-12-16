@@ -23,7 +23,7 @@ export function WatchPage() {
         <PageWrapper>
             <PageHeader>
                 <h1 className="truncate">
-                    <Link to={import.meta.env.BASE_URL}>←</Link>&nbsp;{movie.title}
+                    <Link to={`${import.meta.env.BASE_URL}/`}>←</Link>&nbsp;{movie.title}
                 </h1>
             </PageHeader>
             <ContentWrapper>

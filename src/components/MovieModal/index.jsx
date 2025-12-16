@@ -83,7 +83,7 @@ export function MovieModal({ movieId, isOpen, onClose }) {
                             {/* Link из react-router-dom для навигации без перезагрузки */}
                             <Link
                                 className="primary-btn"
-                                to={`/watch/${encodeURIComponent(movieId)}`}
+                                to={`${import.meta.env.BASE_URL}/watch/${encodeURIComponent(movieId)}`}
                             >
                                 Смотреть вместе →
                             </Link>

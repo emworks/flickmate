@@ -5,8 +5,8 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/watch/:movieId" element={<WatchPage />} />
+        <Route path={import.meta.env.BASE_URL} element={<HomePage />} />
+        <Route path={`${import.meta.env.BASE_URL}/watch/:movieId`} element={<WatchPage />} />
       </Routes>
     </BrowserRouter>
   )

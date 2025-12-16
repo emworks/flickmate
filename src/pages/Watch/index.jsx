@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { MovieWatch, PageWrapper, PageHeader, ContentWrapper } from "src/components";
 import { MovieService } from "src/services";
 
@@ -22,11 +22,13 @@ export function WatchPage() {
     return (
         <PageWrapper>
             <PageHeader>
-                <h1 className="truncate"><a href="/">←</a>&nbsp;{movie.title}</h1>
+                <h1 className="truncate">
+                    <Link to={import.meta.env.BASE_URL}>←</Link>&nbsp;{movie.title}
+                </h1>
             </PageHeader>
             <ContentWrapper>
                 <MovieWatch movieId={movie.id} poster={movie.imgBig} />
             </ContentWrapper>
-        </PageWrapper>
+        </PageWrapper >
     )
 }

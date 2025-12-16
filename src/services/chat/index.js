@@ -1,3 +1,5 @@
+import stringToNumberInRange from "src/utils/stringToNumberInRange"
+
 const API_URL = "https://jsonplaceholder.typicode.com/comments";
 
 /**
@@ -8,8 +10,12 @@ export class ChatService {
      * Загружает сообщения с сервера
      * Используется для демонстрации GET-запроса
      */
-    static async getMessages() {
-        const response = await fetch(`${API_URL}?postId=1`);
+    static async getMessages(movieId) {
+        // В jsonplaceholder всего 100 posts,
+        // поэтому для использования movieId в качестве postId
+        // генерируем на основе movieId число от 1 до 100
+        const id = stringToNumberInRange(movieId, 1, 100)
+        const response = await fetch(`${API_URL}?postId=${id}`);
         return response.json();
     }
 

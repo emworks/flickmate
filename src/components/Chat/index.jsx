@@ -31,12 +31,9 @@ export function Chat({ movieId }) {
     // Ключ в localStorage зависит от movieId, чтобы чат был привязан к конкретному фильму
     const { value: messages, setValue: setMessages } = useLocalStorage(`flickmate_chat_${movieId}`, [])
 
-    // Загружаем сообщения "с сервера" при открытии чата
+    // Загружаем сообщения с публичного тестового API при открытии чата
     useEffect(() => {
-        // Используется публичный тестовый API, 
-        // который не поддерживает чаты по фильмам,
-        // поэтому movieId здесь не передаётся
-        ChatService.getMessages().then(apiMessages => {
+        ChatService.getMessages(movieId).then(apiMessages => {
             // Берём 5 псевдослучайных сообщений
             // и приводим объект к нужному для отображения формату
             const formatted = apiMessages
@@ -48,7 +45,8 @@ export function Chat({ movieId }) {
                     text: item.body,
                 }));
 
-            // Если в localStorage ещё нет сообщений — инициализируем чат данными с сервера
+            // Если в localStorage ещё нет сообщений – инициализируем чат данными с сервера
+            // prev здесь – это messages, полученные ранее из useLocalStorage
             setMessages(prev => prev.length ? prev : formatted);
         }).catch(() => {
             // TODO: Добавить обработку ошибки, если нужно
@@ -84,16 +82,16 @@ export function Chat({ movieId }) {
             movieId,
             sender: currentUser,
             text: inputValue,
+        }).then(() => { // сервер вернул 201 – сообщение успешно добавлено
+            // Добавляем сообщение в текущую вкладку
+            setMessages(prev => [...prev, message])
+            // Отправляем сообщение через BroadcastChannel в другие вкладки
+            sendChannelMessage(message)
+            // Очищаем поле ввода после отправки сообщения
+            setInputValue("")
         }).catch(() => {
             // TODO: Добавить обработку ошибки, если нужно
         });
-
-        // Добавляем сообщение в текущую вкладку
-        setMessages(prev => [...prev, message]);
-        // Отправляем сообщение через BroadcastChannel в другие вкладки
-        sendChannelMessage(message);
-        // Очищаем поле ввода после отправки сообщения
-        setInputValue("")
     }
 
     // Скролл к последнему сообщению и фокус на input при отправке/получении нового сообщения

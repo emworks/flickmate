@@ -3,10 +3,10 @@ import { HomePage, WatchPage } from "src/pages";
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
-        <Route path={`${import.meta.env.BASE_URL}/`} element={<HomePage />} />
-        <Route path={`${import.meta.env.BASE_URL}/watch/:movieId`} element={<WatchPage />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/watch/:movieId" element={<WatchPage />} />
       </Routes>
     </BrowserRouter>
   )

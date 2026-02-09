@@ -1,5 +1,5 @@
 # Flickmate
 
-Учебный проект по курсу НИУ ВШЭ ["Веб-программирование"](https://github.com/two-devs-teaching/hse-web-programming-2025) (начальный уровень).
+Прототип React-приложения на основе проведенного [воркшопа](https://drive.google.com/file/d/1Fg60Wqet3kZsk39s7OwTRKApYkqENXNP/view?usp=sharing) и разработанного в Figma [макета](https://www.figma.com/design/hCa1UnsHL2vjPF4Ur86t99/Flickmate?node-id=0-1&p=f&t=n0Vfg3FFdxhNNTqr-0).
 
-В PRах выполненные домашние задания.
+Все изменения в PRах.

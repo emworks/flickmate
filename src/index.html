@@ -4,8 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flickmate</title>
+    <link rel="icon" href="assets/favicon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/common.css">
+    <link rel="stylesheet" href="styles/utils.css">
+    <link rel="stylesheet" href="styles/movie-list.css">
 </head>
 <body>
-    Flickmate is coming soon...
+    <div class="page-wrapper">
+        <header class="main-header">
+            <h1>Каталог фильмов</h1>
+        </header>
+        <main class="content-wrapper">
+            <section class="movie-list">
+                <!-- template using posthtml-expressions -->
+                <each loop="movie in movies">
+                    <article class="movie-item" >
+                        <a href="{{ movie.link }}">
+                            <div class="movie-item-poster">
+                                <img alt="{{ movie.title }}" loading="lazy" src="{{ movie.img }}" />
+                            </div>
+                            <div class="movie-item-desc">
+                                <div class="movie-item-title truncate">{{ movie.title }}</div>
+                                <div class="movie-item-subtitle truncate">{{ movie.subtitle }}</div>
+                                <div class="movie-item-details truncate">{{ movie.details }}</div>
+                            </div>
+                        </a>
+                    </article>
+                </each>
+            </section>
+        </main>
+    </div>
 </body>
 </html>
